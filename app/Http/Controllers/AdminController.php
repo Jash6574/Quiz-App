@@ -7,6 +7,15 @@ use App\Models\Subject;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\Answer;
+use \App\Models\User;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+
+
 
 class AdminController extends Controller
 {
@@ -232,9 +241,7 @@ class AdminController extends Controller
                     ]);
                 }
             }
-            return response()->json(['success' => true, 'msg' => 'Q&A updated successfully!' ]);
-
-
+            return response()->json(['success' => true, 'msg' => 'Q&A updated successfully!']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'msg' => $e->getMessage()]);
         }
@@ -244,12 +251,89 @@ class AdminController extends Controller
 
     public function deleteQna(Request $request)
     {
-            Question::where('id', $request->id)->delete();
-            Answer::where('question_id', $request->id)->delete();
-            return response()->json(['success' => true, 'msg' => 'Q&A deleted successfully']);
-        
+        Question::where('id', $request->id)->delete();
+        Answer::where('question_id', $request->id)->delete();
+        return response()->json(['success' => true, 'msg' => 'Q&A deleted successfully']);
     }
 
 
 
+    //student dashboard
+
+    public function studentsDashboard(Request $request)
+    {
+        $students = User::where('is_admin', 0)->get();
+        return view('admin.studentsDashboard', compact('students'));
+    }
+
+
+    //add student
+    public function addStudent(Request $request)
+    {
+        try {
+
+            $password = Str::random(8);
+
+            User::insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($password),
+            ]);
+
+            $url = URL::to('/');
+
+            $data['url'] = $url;
+            $data['name'] = $request->name;
+            $data['email'] = $request->email;
+            $data['password'] = $password;
+            $data['title'] = "Student Registration on OES";
+
+            Mail::send('registrationMail', ['data' => $data], function ($message) use ($data) {
+                $message->to($data['email'])->subject($data['title']);
+            });
+            // return response()->json(['success' => true, 'msg' => 'Student Added Successfully!!!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+
+    public function editStudent(Request $request)
+    {
+        try {
+
+            $user = User::find($request->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+
+            $url = URL::to('/');
+
+            $data['url'] = $url;
+            $data['name'] = $request->name;
+            $data['email'] = $request->email;
+            $data['title'] = "Updated Student Profile on OES";
+
+            Mail::send('updateProfileMail', ['data' => $data], function ($message) use ($data) {
+                $message->to($data['email'])->subject($data['title']);
+            });
+            // return response()->json(['success' => true, 'msg' => 'Student Updated Successfully!!!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+
+//delete student
+    public function deleteStudent(Request $request)
+    {
+
+        try {
+
+            User::where('id',$request->id)->delete();
+
+            // return response()->json(['success' => true, 'msg' => 'Student Deleted Successfully']);
+
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
+        }
+    }
 }

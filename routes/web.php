@@ -73,6 +73,14 @@ Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard']);
     Route::post('/update-qna-ans', [AdminController::class, 'updateQna'])->name('updateQna');
     Route::post('/delete-qna-ans', [AdminController::class, 'deleteQna'])->name('deleteQna');
 
+
+    //student routes
+    Route::get('/admin/students', [AdminController::class, 'studentsDashboard']);
+    Route::post('/add-student', [AdminController::class, 'addStudent'])->name('addStudent');
+    Route::post('/edit-student', [AdminController::class, 'editStudent'])->name('editStudent');
+    Route::post('/delete-student', [AdminController::class, 'deleteStudent'])->name('deleteStudent');
+
+
 });
 
 //student miiddle ware
