@@ -32,7 +32,7 @@
         @else
 
         <tr>
-            <td colspan="8">There No Exams</td>
+            <td colspan="8">There is No Exams</td>
         </tr>
         @endif
     </tbody>

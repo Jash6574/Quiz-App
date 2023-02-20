@@ -58,7 +58,6 @@
         <tr>
             <td colspan='5'>Exam not Found !!</td>
         </tr>
-        @endelse
         @endif
 
 
