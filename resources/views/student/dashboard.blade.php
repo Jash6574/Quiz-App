@@ -28,7 +28,7 @@
                     <td>{{ $exam->time }} Hrs</td>
                     <td>{{ $exam->attempt }} Time/s</td>
                     <td></td>
-                    <td><a href="#" class="copy" data-code="{{ $exam->enterance_id }}"><i class="fa fa-copy"></i></a></td>
+                    <td><a href="#" class="copy" data-code="{{ $exam->enterance_id }}">Click here to copy  <i class="fa fa-copy"></i></a></td>
                 </tr>
             @endforeach
         @else
@@ -44,7 +44,7 @@
 <script>
     $(document).ready(function(){
         $('.copy').click(function(){
-            $(this).parent().append('<span class="copied_text">&nbsp;&nbsp;Copied!</span>');
+            $(this).parent().append('<pre class="copied_text text-white bg-dark p-1" style="width: fit-content;">Copied!</pre>');
 
             var code = $(this).attr('data-code');
             var url = "{{URL::to('/')}}/exam/"+code;
@@ -57,7 +57,7 @@
 
             setTimeout(()=>{
                 $('.copied_text').remove();
-            },1000);
+            },500);
         })
     })
 </script>
