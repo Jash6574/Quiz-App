@@ -131,14 +131,14 @@
                     <input type="hidden" name="id" id="exam_id">
                     <input type="text" name="exam_name" id="exam_name" placeholder="Enter Exam Name" class="w-100" required><br><br>
 
-                    <!-- <select name="subject_id" id="subject_id" required class="w-100">
+                    <select name="subject_id" id="subject_id" required class="w-100">
                     <option value="" hidden>Select Subject</option>
                         @if(is_countable($subject) && count($subject) > 0)
                             @foreach($subject as $subject)
                                 <option value="{{ $subject->id }}">{{$subject->subject}}</option>
                             @endforeach
                         @endif
-                    </select><br><br> -->
+                    </select><br><br>
 
                     <input type="date" name="date" id="date" class="w-100" required min="<?php echo date('Y-m-d') ?>"><br><br>
                     <input type="time" name="time" id="time" class="w-100" required><br><br>
@@ -355,8 +355,6 @@
                         alert(data.msg);
                     }
                 }
-
-
             })
         });
 
