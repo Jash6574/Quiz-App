@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Exam;
 use App\Models\QnaExam;
+use App\Models\ExamAttempt;
+use App\Models\ExamAnswer;
 
 class ExamController extends Controller
 {
@@ -35,4 +38,30 @@ class ExamController extends Controller
             return view('404');
         }
     }
+
+
+
+    public function examSubmit(Request $request){
+
+
+        $attempt_id = ExamAttempt::insertGetId([
+            'exam_id' => $request->exam_id,
+            'user_id' => Auth::user()->id
+        ]);
+        $qcount = count($request->q);
+        if($qcount > 0){
+            for($i = 0; $i<$qcount ;$i++){
+                if(!empty($request->input('ans_'.($i+1)))){
+                    ExamAnswer::insert([
+                        'attempt_id' => $attempt_id,
+                        'question_id' => $request->q[$i],
+                        'answer_id' => request()->input('ans_'.($i+1)),
+                    ]);
+                }
+            }
+        }
+
+        return view('thank-you');
+    }
+
 }

@@ -13,7 +13,7 @@
         <th>Time</th>
         <th>Total Attempt</th>
         <th>Available Attempt</th>
-        <th>Copy Link</th>
+        <th>Exam Link</th>
     </thead>
 
     <tbody>
@@ -28,7 +28,7 @@
                     <td>{{ $exam->time }} Hrs</td>
                     <td>{{ $exam->attempt }} Time/s</td>
                     <td></td>
-                    <td><a href="#" class="copy" data-code="{{ $exam->enterance_id }}">Click here to copy  <i class="fa fa-copy"></i></a></td>
+                    <td><a href="{{URL::to('/')}}/exam/{{ $exam->enterance_id }}" target="_blank" class="copy" data-code="{{ $exam->enterance_id }}">Click here &nbsp;<i class="fa fa-external-link"></i></a></td>
                 </tr>
             @endforeach
         @else

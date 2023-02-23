@@ -3,16 +3,25 @@
 
 @section('space-work')
 
+
+@php
+    $time = explode(':',$exam[0]['time'])
+@endphp
+
     <div class="container"><Br>
         <p style="color:black">Welcome, {{ Auth::user()->name }}</p>
         <h1 class="text-center">{{ $exam[0]['exam_name'] }}</h1>
+        <h3 class="text-right time" style="color:red">{{ $exam[0]['time'] }}</h3>
 
         @php $qcount = 1; @endphp
         @if($success==true)
 
             @if(count($qna)>0)
-            <form action="" method="POST" class="mb-5" onsubmit="return isValid()">
-                <input type="hidden" name="exam_id" value="{{ $exam[0]['id'] }}">
+            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form">
+
+            @csrf
+
+            <input type="hidden" name="exam_id" value="{{ $exam[0]['id'] }}">
                 @foreach($qna as $data)<br>
                 <div >
                     <h5>(Q:{{ $qcount++ }})  {{ $data['question'][0]['question' ] }}</h5>
@@ -51,6 +60,43 @@
             $('#ans_'+no).val($(this).val());
         });
 
+        var time = @json($time);
+        $('.time').text(time[0]+':'+time[1]+':00');
+
+        var seconds = 59;
+        var hours = parseInt(time[0]);
+        var minutes = parseInt(time[1]);
+
+        var timer = setInterval(()=>{
+
+
+            if(hours == 0 && minutes == 0 && seconds == 0){
+                clearInterval(timer);
+                $('#exam_form').submit();
+            }
+
+            console.log(hours+"-:-"+minutes+"-:-"+seconds);
+
+
+            if(seconds == 0){
+                minutes--;
+                seconds = 59
+            }
+            if(minutes == 0 && hours != 0){
+                hours--;
+                minutes = 59
+                seconds = 59
+            }
+
+            let tempHours = hours.toString().length > 1 ? hours : '0'+hours;
+            let tempMinutes = minutes.toString().length > 1 ? minutes : '0'+minutes;
+            let tempSeconds = seconds.toString().length > 1 ? seconds : '0'+seconds;
+
+        $('.time').text(tempHours+':'+tempMinutes+':'+tempSeconds);
+
+
+            seconds--;
+        },1000)
 
     });
 
