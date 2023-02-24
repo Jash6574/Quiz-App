@@ -11,7 +11,7 @@
 <br>
 <br>
 
-<table class="table">
+<table class="table text-center">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -166,7 +166,7 @@
 
         $('#editSubject').submit(function(e) {
             e.preventDefault();
-   
+
             var formData = $(this).serialize();
 
             $.ajax({

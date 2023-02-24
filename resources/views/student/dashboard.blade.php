@@ -4,7 +4,7 @@
 
 <h2>Exam</h2>
 
-<table class="table">
+<table class="table text-center">
     <thead>
         <th>#</th>
         <th>Exam Name</th>
@@ -12,7 +12,7 @@
         <th>Date</th>
         <th>Time</th>
         <th>Total Attempt</th>
-        <th>Available Attempt</th>
+        <th>Your Attempt</th>
         <th>Exam Link</th>
     </thead>
 
@@ -21,13 +21,14 @@
         @php $count = 1; @endphp
             @foreach($exams as $exam)
                 <tr>
+                    <td style="display: none;">{{ $exam->id }}</td>
                     <td>{{ $count++ }}</td>
                     <td>{{ $exam->exam_name }}</td>
                     <td>{{ $exam->subjects[0]['subject'] }}</td>
                     <td>{{ $exam->date }}</td>
                     <td>{{ $exam->time }} Hrs</td>
-                    <td>{{ $exam->attempt }} Time/s</td>
-                    <td></td>
+                    <td>{{ $exam->attempt }}</td>
+                    <td>{{ $exam->attempt_counter }}</td>
                     <td><a href="{{URL::to('/')}}/exam/{{ $exam->enterance_id }}" target="_blank" class="copy" data-code="{{ $exam->enterance_id }}">Click here &nbsp;<i class="fa fa-external-link"></i></a></td>
                 </tr>
             @endforeach

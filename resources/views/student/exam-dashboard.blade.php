@@ -11,12 +11,12 @@
     <div class="container"><Br>
         <p style="color:black">Welcome, {{ Auth::user()->name }}</p>
         <h1 class="text-center">{{ $exam[0]['exam_name'] }}</h1>
-        <h3 class="text-right time" style="color:red">{{ $exam[0]['time'] }}</h3>
 
         @php $qcount = 1; @endphp
         @if($success==true)
 
-            @if(count($qna)>0)
+        @if(count($qna)>0)
+        <h3 class="text-right time" style="color:red">{{ $exam[0]['time'] }}</h3>S
             <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form">
 
             @csrf
@@ -63,7 +63,7 @@
         var time = @json($time);
         $('.time').text(time[0]+':'+time[1]+':00');
 
-        var seconds = 59;
+        var seconds = 00;
         var hours = parseInt(time[0]);
         var minutes = parseInt(time[1]);
 

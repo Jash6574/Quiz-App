@@ -11,7 +11,7 @@
 <br>
 <br>
 
-<table class="table">
+<table class="table text-center">
 <thead class="thead-dark">
 
         <tr>

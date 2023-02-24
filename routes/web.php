@@ -89,6 +89,10 @@ Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard']);
     Route::get('/delete-exam-questions', [AdminController::class, 'deleteExamQuestions'])->name('deleteExamQuestions');
 
 
+    //Exam marks
+    Route::get('/admin/marks', [AdminController::class, 'loadMarks'])->name('loadMarks');
+
+
 
 });
 
