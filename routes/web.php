@@ -90,7 +90,8 @@ Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard']);
 
 
     //Exam marks
-    Route::get('/admin/marks', [AdminController::class, 'loadMarks'])->name('loadMarks');
+    Route::get('/admin/marks', [AdminController::class, 'loadMarks']);
+    Route::post('/update-marks', [AdminController::class, 'updateMarks'])->name('updateMarks');
 
 
 
