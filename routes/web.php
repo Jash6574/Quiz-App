@@ -94,6 +94,9 @@ Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard']);
     Route::post('/update-marks', [AdminController::class, 'updateMarks'])->name('updateMarks');
 
 
+    //Exam review
+    Route::get('/admin/review-exams', [AdminController::class, 'reviewExams'])->name('reviewExams');
+
 
 });
 
