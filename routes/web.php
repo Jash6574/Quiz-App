@@ -96,6 +96,9 @@ Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard']);
 
     //Exam review
     Route::get('/admin/review-exams', [AdminController::class, 'reviewExams'])->name('reviewExams');
+    Route::get('/get-reviewed-qna', [AdminController::class, 'reviewQna'])->name('reviewQna');
+
+    Route::post('/approved-qna', [AdminController::class, 'approvedQna'])->name('approvedQna');
 
 
 });
