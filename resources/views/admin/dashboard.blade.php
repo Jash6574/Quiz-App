@@ -11,8 +11,8 @@
 <br>
 <br>
 
-<table class="table text-center">
-    <thead class="thead-dark">
+<table class="table text-left">
+    <thead class="">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Subject</th>

@@ -4,7 +4,7 @@
 
 <h2>Exam</h2>
 
-<table class="table text-center">
+<table class="table text-left">
     <thead>
         <th>#</th>
         <th>Exam Name</th>

@@ -8,8 +8,8 @@
 <br>
 <br>
 
-<table class="table text-center">
-    <thead class="thead-dark">
+<table class="table text-left">
+    <thead class="">
         <thead>
             <th>#</th>
             <th>Exam Name</th>

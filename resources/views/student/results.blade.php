@@ -5,7 +5,7 @@
 
 <h2>Results</h2>
 
-<table class="table">
+<table class="table text-left">
 
     <thead>
         <th>#</th>
