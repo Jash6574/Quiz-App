@@ -22,9 +22,11 @@
 
     <tbody>
         @if(count($questions)>0)
+        @php $qcount = 1; @endphp
+
         @foreach($questions as $question)
         <tr>
-            <td>{{$question->id}}</td>
+            <td>{{$qcount++}}</td>
             <td>{{$question->question}}</td>
             <td>
                 <a href="#" class="ansButton" data-id="{{$question->id}}" data-toggle="modal" data-target="#showAnsModal">See Answers</a>

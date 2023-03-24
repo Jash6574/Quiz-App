@@ -23,9 +23,11 @@
     <tbody>
 
         @if(count($subjects) > 0)
+        @php $qcount = 1; @endphp
+
             @foreach($subjects as $subjects)
                 <tr>
-                    <td> {{ ($subjects -> id) }} </td>
+                    <td> {{ $qcount++ }} </td>
                     <td> {{ ($subjects -> subject) }} </td>
                     <td><button class="btn btn-info editButton" data-id="{{ ($subjects -> id) }}" data-subject="{{ ($subjects -> subject) }}" data-toggle="modal" data-target="#editSubjectModel">Edit</button></td>
                     <td><button class="btn btn-danger deleteButton" data-id="{{ ($subjects -> id) }}"  data-toggle="modal" data-target="#deleteSubjectModel">Delete</button></td>

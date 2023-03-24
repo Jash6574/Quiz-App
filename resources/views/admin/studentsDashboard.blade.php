@@ -22,9 +22,11 @@
 
     <tbody>
         @if(count($students)>0)
+        @php $qcount = 1; @endphp
+
         @foreach($students as $student)
         <tr>
-            <td>{{$student->id}}</td>
+            <td>{{$qcount++}}</td>
             <td>{{$student->name}}</td>
             <td>{{$student->email}}</td>
             <td>
